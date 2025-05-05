@@ -1,33 +1,55 @@
 ﻿<Window x:Class="SimpleWeatherApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Simple Weather App" Height="220" Width="320"
-        WindowStartupLocation="CenterScreen">
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        Title="Wetter" 
+        Height="300" 
+        Width="350"
+        WindowStartupLocation="CenterScreen"
+        Background="#f0f0f0">
+    <Border Margin="15" 
+            Background="White" 
+            CornerRadius="20"
+            Padding="20">
+        <StackPanel>
+            <!-- Eingabebereich -->
+            <Grid Margin="0,0,0,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-        <TextBox x:Name="CityTextBox" 
-                 Margin="0,0,0,10"
-                 Foreground="Gray" 
-                 Text="Enter city"
-               />
+                <TextBox x:Name="CityTextBox"
+                         Grid.Column="0"
+                         Padding="10,8"
+                         FontSize="14"
+                         Text="Stadt eingeben"
+                         Foreground="Gray"
+                         BorderThickness="1"
+                         BorderBrush="#dddddd"/>
 
-        <Button Content="Get Weather"
-                Grid.Row="1"
-                Height="30"
-                Margin="0,0,0,10"
-                Click="GetWeather_Click"/>
+                <Button Grid.Column="1"
+                        Margin="5,0,0,0"
+                        Content="🔍"
+                        FontSize="14"
+                        Padding="10,8"
+                        Background="#4287f5"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="GetWeather_Click"/>
+            </Grid>
 
-        <TextBlock x:Name="ResultTextBlock"
-                   Grid.Row="2"
-                   FontSize="16"
-                   TextWrapping="Wrap"
-                   VerticalAlignment="Top"
-                   Margin="0,10,0,0"/>
-    </Grid>
+            <!-- Ergebnisbereich -->
+            <Border Background="#f9f9f9"
+                    BorderThickness="1"
+                    BorderBrush="#eeeeee"
+                    Padding="15"
+                    MinHeight="150">
+                <TextBlock x:Name="ResultTextBlock"
+                           FontSize="14"
+                           TextWrapping="Wrap"
+                           Foreground="#333333"/>
+            </Border>
+        </StackPanel>
+    </Border>
 </Window>
-
