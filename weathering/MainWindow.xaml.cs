@@ -101,7 +101,7 @@ namespace SimpleWeatherApp
         private async Task<string> GetWeatherAsync(string city)
         {
             // URL für die API-Anfrage erstellen
-            string url = $"https://api.openweathermap.org/data/2.5/weather?q={Uri.EscapeDataString(city)}&appid={ApiKey}&units=metric";
+            string url = $"https://api.openweathermap.org/data/2.5/weather?q={Uri.EscapeDataString(city)}&appid={ApiKey}&units=metric&lang=de";
 
             // HTTP-Anfrage senden und Antwort empfangen
             string response = await _httpClient.GetStringAsync(url);
