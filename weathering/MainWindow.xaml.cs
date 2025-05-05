@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Newtonsoft.Json.Linq;
 
 namespace SimpleWeatherApp
@@ -15,7 +16,7 @@ namespace SimpleWeatherApp
 
         // HttpClient als statische Instanz, um Socket-Erschöpfung zu vermeiden
         private static readonly HttpClient _httpClient = new HttpClient();
-        
+
         // Konstanten für UI-Texte
         private const string PlaceholderText = "Stadt eingeben";
 
@@ -40,7 +41,7 @@ namespace SimpleWeatherApp
             {
                 // Platzhaltertext auf Deutsch setzen
                 CityTextBox.Text = PlaceholderText;
-                
+
                 CityTextBox.GotFocus += (s, e) =>
                 {
                     if (CityTextBox.Text == PlaceholderText)
@@ -51,6 +52,15 @@ namespace SimpleWeatherApp
                 {
                     if (string.IsNullOrWhiteSpace(CityTextBox.Text))
                         CityTextBox.Text = PlaceholderText;
+                };
+
+                // Event-Handler für die Enter-Taste hinzufügen
+                CityTextBox.KeyDown += (s, e) =>
+                {
+                    if (e.Key == Key.Enter)
+                    {
+                        GetWeather_Click(this, new RoutedEventArgs());
+                    }
                 };
             }
         }
